@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es6", "dom"],
+    "allowJs": false,
+    "checkJs": false,
+    "sourceMap": true,
+    "jsx": "react",
+    "declaration": false,
+    "rootDir": "./src",
+    "outDir": "./build",
+    "removeComments": true,
+    "noEmit": false,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": "."
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [".husky", ".vscode", "coverage", "node_modules", "build"]
+}
