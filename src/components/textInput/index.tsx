@@ -1,4 +1,5 @@
-import React, { FC, ChangeEvent, useEffect, useState, useLayoutEffect } from 'react';
+import React, { FC, FormEvent, ChangeEvent } from 'react';
+import { TextInputStyle } from './styles';
 
 interface IProps {
   onChange?: (value: string) => void;
@@ -6,23 +7,21 @@ interface IProps {
 }
 
 const TextInput: FC<IProps> = ({ onChange, onSubmit }) => {
-  useEffect(() => {
-    console.log('TextInput RENDER');
-  });
-
   const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
     onChange && onChange(event.target.value);
-    console.log(event.target.value);
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (event: FormEvent) => {
+    event.preventDefault();
     onSubmit && onSubmit();
   };
   return (
-    <>
-      <input placeholder='Search for any IP address' type='text' onChange={onChangeHandler} />
-      <button onClick={onSubmitHandler}>Send</button>
-    </>
+    <TextInputStyle>
+      <form onSubmit={onSubmitHandler}>
+        <input placeholder='Search for any IP address' type='text' onChange={onChangeHandler} />
+        <button onClick={onSubmitHandler}>Send</button>
+      </form>
+    </TextInputStyle>
   );
 };
 

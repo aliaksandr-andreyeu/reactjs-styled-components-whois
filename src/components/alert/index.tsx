@@ -1,15 +1,12 @@
-import React, { FC, useState, useLayoutEffect, useEffect } from 'react';
+import React, { FC } from 'react';
+import { AlertStyle, AlertContentStyle } from './styles';
 
 interface IProps {
-  error: string;
+  error: string | null;
 }
 
-const Alert: FC<IProps> = ({ error }) => {
-  useEffect(() => {
-    console.log('Alert RENDER');
-  });
-
-  return <div>Alert</div>;
-};
+const Alert: FC<IProps> = ({ error }) => (
+  <AlertStyle>{error && <AlertContentStyle>{error}</AlertContentStyle>}</AlertStyle>
+);
 
 export default Alert;

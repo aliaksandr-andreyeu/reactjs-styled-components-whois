@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useState, useLayoutEffect } from 'react';
+import React, { FC } from 'react';
+import { InfoBoxStyle } from './styles';
 import { IData } from '../../types';
 
 interface IProps {
@@ -6,19 +7,27 @@ interface IProps {
 }
 
 const InfoBox: FC<IProps> = ({ data }) => {
-  useEffect(() => {
-    console.log('InfoBox RENDER');
-  });
-
   if (data) {
     const { postal, city, country, utc, isp, ip } = data;
     return (
-      <div>
-        IP Address Location Timezone ISP
+      <InfoBoxStyle>
         <p>
-          {postal}, {city}, {country}, {utc}, {isp}, {ip}
+          <span>IP Address</span>
+          {ip}
         </p>
-      </div>
+        <p>
+          <span>Location</span>
+          {postal}, {city}, {country}
+        </p>
+        <p>
+          <span>Timezone</span>
+          {utc}
+        </p>
+        <p>
+          <span>ISP</span>
+          {isp}
+        </p>
+      </InfoBoxStyle>
     );
   }
 

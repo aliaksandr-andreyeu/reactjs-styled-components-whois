@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: $white-color;
-    font-family: fonts.text;
+    background-color: ${colors.darkPrimary};
+    font-family: ${fonts.text};
     font-size: 62.5%;
     font-weight: normal;
     height: 100%;
@@ -30,22 +30,33 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: auto;
     width: 100%;
     line-height: 1;
-    margin: 0;    
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
   }
 `;
 
-const Content = styled.div`
-  align-items: center;
-  background: orange;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
+const ContentStyle = styled.div`
+  position: relative;
+  z-index: 2;
   display: flex;
-  font-weight: bold;
-
+  flex: 1 0 auto;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  padding: 24px 16px;
 
-  padding: 1rem;
+  h1 {
+    color: ${colors.iconText};
+    font-size: 24px;
+    font-family: ${fonts.title};
+    font-weight: 500;
+    margin: 0 0 24px;
+  }
 `;
 
-export { GlobalStyle, Content };
+export { GlobalStyle, ContentStyle };

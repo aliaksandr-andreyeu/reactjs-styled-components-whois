@@ -1,20 +1,21 @@
-import React, { FC, Fragment, useState, useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { FC, Fragment, useState, useLayoutEffect, useMemo } from 'react';
 import { TextInput, InfoBox, MapBox, Alert } from '../../components';
 import { getApiData } from '../../helpers';
 import { IData } from '../../types';
-import { GlobalStyle, Content } from './styles';
-
-const defaultCoords: number[] = [53.90301766889936, 27.556755957117403];
+import { config } from '../../constants';
+import { GlobalStyle, ContentStyle } from './styles';
 
 const App: FC = () => {
   const [ipAddress, setIpAddress] = useState<string>('');
-  const [error, setError] = useState<string>('');
-
+  const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<IData | null>(null);
-
-  const [coords, setCoords] = useState<number[]>(defaultCoords);
+  const [coords, setCoords] = useState<number[]>(config.coords);
 
   const getData = async () => {
+    error && setError(null);
+
+    if (data && (data.ip === ipAddress || !ipAddress)) return;
+
     try {
       const {
         postal,
@@ -35,15 +36,8 @@ const App: FC = () => {
     }
   };
 
-  console.log('ipAddress', ipAddress);
-  console.log('error', error);
-
-  useEffect(() => {
-    console.log('App RENDER');
-  });
-
   useLayoutEffect(() => {
-    getData();
+    !data && getData();
   }, []);
 
   const errorAlert = useMemo(() => <Alert error={error} />, [error]);
@@ -54,14 +48,13 @@ const App: FC = () => {
   return (
     <Fragment>
       <GlobalStyle />
-      <Content>
-        <div className='data-content'>
-          {errorAlert}
-          {input}
-          {info}
-          {map}
-        </div>
-      </Content>
+      <ContentStyle>
+        <h1>IP Address Tracker</h1>
+        {input}
+        {errorAlert}
+        {info}
+      </ContentStyle>
+      {map}
     </Fragment>
   );
 };

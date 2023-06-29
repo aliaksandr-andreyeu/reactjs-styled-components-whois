@@ -7,11 +7,11 @@ const theme = {
     iconText: '#FFFFFF',
     primaryText: '#212121',
     secondaryText: '#757575',
-    divider: '#BDBDBD',
+    divider: '#BDBDBD'
   },
   fonts: {
     title: '"Poppins", sans-serif',
-    text: '"Open Sans", sans-serif',
+    text: '"Open Sans", sans-serif'
   }
 };
 
