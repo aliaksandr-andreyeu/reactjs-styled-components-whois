@@ -55,7 +55,7 @@ interface IErrorResponse extends IResponse {
 const { apiUrl } = config;
 
 const getApiUrl = (ip?: string): string => {
-  return Boolean(ip) ? `${apiUrl}?ip=${ip}` : apiUrl;
+  return ip ? `${apiUrl}?ip=${ip}` : apiUrl;
 };
 
 const isError = (response: ISuccessResponse | IErrorResponse): response is IErrorResponse =>

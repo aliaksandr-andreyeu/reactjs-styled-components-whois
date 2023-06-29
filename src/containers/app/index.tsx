@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState, useLayoutEffect, useMemo } from 'react';
+import React, { FC, Fragment, useState, useLayoutEffect, useMemo, useCallback } from 'react';
 import { TextInput, InfoBox, MapBox, Alert } from '../../components';
 import { getApiData } from '../../helpers';
 import { IData } from '../../types';
@@ -11,7 +11,7 @@ const App: FC = () => {
   const [data, setData] = useState<IData | null>(null);
   const [coords, setCoords] = useState<number[]>(config.coords);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     error && setError(null);
 
     if (data && (data.ip === ipAddress || !ipAddress)) return;
@@ -29,16 +29,16 @@ const App: FC = () => {
       } = await getApiData(ipAddress);
       setCoords([latitude, longitude]);
       setData({ postal, city, country, utc, isp, ip });
-    } catch (error) {
-      if (error instanceof Error) {
-        error.message && setError(error.message);
+    } catch (err) {
+      if (err instanceof Error) {
+        err.message && setError(err.message);
       }
     }
-  };
+  }, [data, error, ipAddress]);
 
   useLayoutEffect(() => {
     !data && getData();
-  }, []);
+  }, [data, getData]);
 
   const errorAlert = useMemo(() => <Alert error={error} />, [error]);
   const input = useMemo(() => <TextInput onChange={setIpAddress} onSubmit={getData} />, [setIpAddress, getData]);

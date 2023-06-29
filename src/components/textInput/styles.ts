@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../constants';
 
-const { fonts, colors } = theme;
+const { colors } = theme;
 
 const TextInputStyle = styled.div`
   margin: 0 0 16px;

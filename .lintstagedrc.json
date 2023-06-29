@@ -1,0 +1,4 @@
+{
+  "./**/*.{ts,tsx}": ["npm run format", "npm run lint:fix", "git add"],
+  "./**/*.{js,json}": ["npm run format", "git add"]
+}

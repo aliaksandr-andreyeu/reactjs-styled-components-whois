@@ -25,5 +25,14 @@
     "baseUrl": "."
   },
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": [".husky", ".vscode", "coverage", "node_modules", "build"]
+  "exclude": [
+    ".husky",
+    ".vscode",
+    "coverage",
+    "node_modules",
+    "build",
+    "**/*.test.*",
+    "**/__mocks__/*",
+    "**/__tests__/*"
+  ]
 }
