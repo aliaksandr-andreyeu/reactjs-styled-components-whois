@@ -1,5 +1,9 @@
 # React.js Whois service SPA with Styled Components
 
+## Requirements
+
+node.js v16.13.0
+
 ## Setup
 
 ```bash

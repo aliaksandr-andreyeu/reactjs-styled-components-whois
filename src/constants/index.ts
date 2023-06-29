@@ -1,3 +1,4 @@
 import config from './config';
+import theme from './theme';
 
-export { config };
+export { config, theme };

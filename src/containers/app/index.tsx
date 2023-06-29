@@ -1,10 +1,8 @@
-import React, { FC, useState, useEffect, useLayoutEffect, useMemo } from 'react';
-
+import React, { FC, Fragment, useState, useEffect, useLayoutEffect, useMemo } from 'react';
 import { TextInput, InfoBox, MapBox, Alert } from '../../components';
-
 import { getApiData } from '../../helpers';
-
 import { IData } from '../../types';
+import { GlobalStyle, Content } from './styles';
 
 const defaultCoords: number[] = [53.90301766889936, 27.556755957117403];
 
@@ -54,14 +52,17 @@ const App: FC = () => {
   const info = useMemo(() => <InfoBox data={data} />, [data]);
 
   return (
-    <div className='content'>
-      <div className='data-content'>
-        {errorAlert}
-        {input}
-        {info}
-        {map}
-      </div>
-    </div>
+    <Fragment>
+      <GlobalStyle />
+      <Content>
+        <div className='data-content'>
+          {errorAlert}
+          {input}
+          {info}
+          {map}
+        </div>
+      </Content>
+    </Fragment>
   );
 };
 
