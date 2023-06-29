@@ -1,5 +1,9 @@
 {
   "verbose": true,
   "preset": "ts-jest",
-  "testEnvironment": "node"
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "setupFilesAfterEnv": ["@testing-library/jest-dom/extend-expect"]
 }
